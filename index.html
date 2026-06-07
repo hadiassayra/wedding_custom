@@ -339,9 +339,38 @@ body.lock-scroll { overflow:hidden; height:100vh; }
 </style>
 </head>
 <body class="lock-scroll">
-<audio id="bgMusic" loop preload="auto" autoplay>
+<audio id="bgMusic" loop preload="auto">
   <source src="./audio.mp3" type="audio/mpeg">
 </audio>
+
+<script>
+const bgMusic = document.getElementById('bgMusic');
+
+function startMusic() {
+    if (!bgMusic) return;
+
+    bgMusic.volume = 1;
+
+    const playPromise = bgMusic.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(() => {});
+    }
+}
+
+window.addEventListener('load', startMusic);
+document.addEventListener('click', startMusic, { once: true });
+document.addEventListener('touchstart', startMusic, { once: true });
+document.addEventListener('scroll', startMusic, { once: true });
+
+const splashVideo = document.getElementById('splashVideo');
+
+if (splashVideo) {
+    splashVideo.addEventListener('ended', () => {
+        startMusic();
+    });
+}
+</script>
 <!-- ========== VIDEO SPLASH SCREEN ========== -->
 <div class="splash-screen" id="splashScreen">
   <div class="video-container">
