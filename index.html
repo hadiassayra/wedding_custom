@@ -340,13 +340,13 @@ body.lock-scroll { overflow:hidden; height:100vh; }
 </head>
 <body class="lock-scroll">
 <audio id="bgMusic" loop>
-    <source src="Indila - Love Story (Official Music Video)(MP3_320K).mp3" type="audio/mpeg">
+    <source src="audio.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-const music = document.getElementById("bgMusic");
+const music = document.getElementById('bgMusic');
 
-document.addEventListener("click", () => {
+document.addEventListener('click', () => {
     music.play();
 }, { once: true });
 </script>
