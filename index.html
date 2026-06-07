@@ -339,7 +339,17 @@ body.lock-scroll { overflow:hidden; height:100vh; }
 </style>
 </head>
 <body class="lock-scroll">
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
 
+<script>
+const music = document.getElementById("bgMusic");
+
+document.addEventListener("click", () => {
+    music.play();
+}, { once: true });
+</script>
 <!-- ========== VIDEO SPLASH SCREEN ========== -->
 <div class="splash-screen" id="splashScreen">
   <div class="video-container">
