@@ -4,8 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>محمد & ماسة — دعوة زفاف</title>
-<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet">
 <style>
+:root{
+  --bg:#2a1b16;
+  --card:#33231d;
+  --gold:#d8a94c;
+  --rose:#a56568;
+  --cream:#fff7ee;
+  --muted:#caa1a2;
+}
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; scroll-snap-type:y mandatory; overflow-y:scroll; }
 body { font-family:'Amiri',serif; background:#1a0a0a; }
@@ -156,123 +164,148 @@ body.lock-scroll { overflow:hidden; height:100vh; }
 }
 .scroll-arrow { display:block; margin:6px auto 0; width:14px; height:14px; border-right:1.5px solid rgba(212,175,55,0.7); border-bottom:1.5px solid rgba(212,175,55,0.7); transform:rotate(45deg); animation:bounce 1.5s infinite; }
 
-/* ======= PAGE 2: SCRATCH ======= */
-#page2 { background:#1e0d0d; flex-direction:column; }
-.scratch-title {
+/* ======= PAGE 2: REVEAL ======= */
+.reveal{
+  background:radial-gradient(circle at center,rgba(255,255,255,.04),transparent 35%), var(--bg);
+  text-align:center;
+  flex-direction:column;
+}
+.small-icon{
+  width:70px;height:70px;margin:0 auto 26px;border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.07);color:var(--muted);
+  font-size:27px;
+}
+.hint{color:var(--rose);font-size:clamp(.9rem,2.4vw,1rem);margin-bottom:36px}
+.script-title{
+  font-family:'Great Vibes','Playfair Display',cursive;
+  font-size:clamp(4rem,12vw,6.8rem);
+  color:var(--cream);
+  margin-bottom:18px;
+  line-height:.8;
+  font-weight:400;
+}
+.subtitle{
+  direction:ltr;
+  letter-spacing:.38em;
+  color:var(--rose);
   font-family:'Playfair Display',serif;
-  font-size:2.8rem;
-  font-style:italic;
-  color:#d4af37;
-  text-align:center;
-  margin-bottom:8px;
-  opacity:0;
-  transform:translateY(20px);
+  font-size:clamp(.75rem,2vw,1rem);
+  margin-bottom:clamp(38px,8vh,65px);
 }
-.scratch-sub {
-  font-size:0.7rem;
-  letter-spacing:3px;
-  color:rgba(255,255,255,0.5);
-  text-align:center;
-  margin-bottom:48px;
-  opacity:0;
-  transform:translateY(20px);
+.scratch-row{
+  display:flex;
+  gap:clamp(18px,5vw,44px);
+  justify-content:center;
+  align-items:flex-start;
+  flex-wrap:wrap;
 }
-.scratch-sub.visible, .scratch-title.visible { animation:fadeUp 0.8s ease forwards; }
-.scratch-sub.visible { animation-delay:0.2s; }
-
-.circles-row { display:flex; gap:32px; align-items:flex-end; justify-content:center; }
-.scratch-circle-wrap { text-align:center; }
-.scratch-label { font-size:0.62rem; letter-spacing:3px; color:rgba(255,255,255,0.4); margin-top:14px; }
-.scratch-canvas {
-  width:130px;
-  height:130px;
+.coin-wrap{
+  display:grid;
+  gap:13px;
+  justify-items:center;
+  color:var(--rose);
+  letter-spacing:.24em;
+  font-family:'Playfair Display',serif;
+  font-size:.75rem;
+  direction:ltr;
+}
+.coin{
+  width:clamp(104px,22vw,138px);
+  aspect-ratio:1;
   border-radius:50%;
-  cursor:crosshair;
-  display:block;
-  position:relative;
+  border:none;
+  cursor:pointer;
+  background:radial-gradient(circle at 32% 25%,#fff1bf 0 9%,#d9aa47 18%,#b98324 70%,#7b551d 100%);
+  box-shadow:0 10px 30px rgba(0,0,0,.4), inset 0 0 22px rgba(255,255,255,.22);
+  color:#4c2d10;
+  font:700 clamp(1.6rem,7vw,2.35rem) 'Playfair Display',serif;
+  transition:.4s ease;
 }
-
-.reveal-text {
-  text-align:center;
-  margin-top:40px;
-  opacity:0;
-  transition:opacity 0.8s ease;
-  font-size:1rem;
-  color:rgba(255,255,255,.6);
+.coin.revealed{
+  background:var(--card);
+  color:var(--cream);
+  border:1px solid rgba(216,169,76,.65);
+  transform:rotateY(180deg);
 }
-.reveal-text.show { opacity:1; }
+.coin span{display:block;transform:rotateY(0)}
+.coin.revealed span{transform:rotateY(180deg)}
 
 /* ======= PAGE 3: DETAILS ======= */
-#page3 { background:#1e0d0d; flex-direction:column; align-items:center; justify-content:center; }
-.details-header {
-  font-family:'Playfair Display',serif;
-  font-size:2.4rem;
-  font-style:italic;
-  color:#f5f0e8;
+.details{
+  background:var(--bg);
+  align-items:flex-start;
+  padding-top:clamp(60px,10vh,120px);
+  overflow-y:auto;
+}
+.details-wrap{width:min(1100px,100%);margin:auto}
+.section-title{
+  font-family:'Great Vibes','Playfair Display',cursive;
+  font-size:clamp(3.6rem,9vw,6rem);
+  font-weight:400;
   text-align:center;
-  margin-bottom:6px;
-  opacity:0;
-  transform:translateY(20px);
+  line-height:.9;
+  margin-bottom:20px;
+  color:var(--cream);
 }
-.details-sub {
-  font-size:0.8rem;
-  color:rgba(255,255,255,0.45);
+.section-subtitle{
   text-align:center;
-  margin-bottom:32px;
-  letter-spacing:1px;
-  opacity:0;
-  transform:translateY(20px);
+  color:var(--rose);
+  font-size:clamp(.95rem,2.4vw,1.15rem);
+  margin-bottom:clamp(38px,7vh,70px);
 }
-.details-header.visible, .details-sub.visible { animation:fadeUp 0.8s ease forwards; }
-.details-sub.visible { animation-delay:0.15s; }
-
-.detail-card {
-  background:rgba(30,10,10,0.9);
-  border:1px solid rgba(212,175,55,0.2);
-  border-radius:6px;
-  padding:26px 30px;
-  width:min(520px, 88vw);
-  margin-bottom:16px;
-  opacity:0;
-  transform:translateY(20px);
+.card{
+  width:min(840px,100%);
+  margin:auto;
+  background:rgba(60,41,34,.75);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:7px;
+  padding:clamp(28px,6vw,64px);
+  box-shadow:0 25px 80px rgba(0,0,0,.18);
 }
-.detail-card.visible { animation:fadeUp 0.7s ease forwards; }
-.detail-card.visible:nth-child(3) { animation-delay:0.1s; }
-.detail-card.visible:nth-child(4) { animation-delay:0.2s; }
-
-.card-title {
+.card h3{
   font-family:'Playfair Display',serif;
-  font-size:1.4rem;
-  color:#f5f0e8;
-  margin-bottom:18px;
-  border-bottom:1px solid rgba(212,175,55,0.2);
-  padding-bottom:12px;
+  font-size:clamp(2rem,5vw,2.8rem);
+  margin-bottom:28px;
+  text-align:left;
+  direction:ltr;
+  color:var(--cream);
 }
-.detail-row { display:flex; align-items:center; justify-content:space-between; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
-.detail-row:last-child { border-bottom:none; }
-.detail-time { color:#d4af37; font-size:0.82rem; letter-spacing:1px; direction:ltr; }
-.detail-event { color:rgba(255,255,255,.8); font-size:0.9rem; }
-
-.loc-row { display:flex; align-items:flex-start; gap:12px; padding:9px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
-.loc-row:last-child { border-bottom:none; }
-.loc-icon { color:#d4af37; font-size:1.1rem; margin-top:2px; flex-shrink:0; }
-.loc-text { color:rgba(255,255,255,.75); font-size:0.88rem; line-height:1.7; }
-.loc-text strong { color:#d4af37; display:block; font-size:0.82rem; letter-spacing:1px; margin-bottom:2px; }
-
-.btn-map {
-  display:inline-block;
-  margin-top:18px;
-  padding:10px 28px;
-  border:1.5px solid rgba(212,175,55,0.6);
-  color:#d4af37;
-  border-radius:30px;
-  font-family:'Amiri',serif;
-  font-size:0.9rem;
-  cursor:pointer;
-  text-decoration:none;
-  transition:all 0.3s;
+.info-line{
+  display:grid;
+  grid-template-columns:42px 1fr;
+  gap:14px;
+  align-items:start;
+  margin:18px 0;
+  text-align:right;
 }
-.btn-map:hover { background:rgba(212,175,55,0.12); }
+.info-line .icon{
+  width:42px;height:42px;border-radius:50%;display:grid;place-items:center;
+  background:rgba(216,169,76,.12);color:var(--gold);font-size:20px;
+}
+.info-line strong{display:block;color:var(--cream);font-size:1.05rem}
+.info-line span{display:block;color:var(--muted);font-size:1rem;margin-top:3px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:32px}
+.gold-btn,.outline-btn{
+  min-height:52px;border-radius:999px;border:1px solid var(--gold);font-family:'Amiri',serif;
+  font-size:1.05rem;text-decoration:none;display:grid;place-items:center;cursor:pointer;
+}
+.gold-btn{background:var(--gold);color:#2b1b12}
+.outline-btn{background:transparent;color:var(--gold)}
+
+@media (max-width:700px){
+  .scratch-row{gap:16px}
+  .coin{width:min(28vw,112px)}
+  .actions{grid-template-columns:1fr}
+  .card h3{text-align:center}
+}
+
+@media (orientation:landscape) and (max-height:520px){
+  .coin{width:84px}
+  .script-title{font-size:3.8rem}
+  .subtitle{margin-bottom:24px}
+  .card{padding:24px}
+  .details{padding-top:24px}
+}
 
 /* ======= KEYFRAMES ======= */
 @keyframes fadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
@@ -348,94 +381,46 @@ body.lock-scroll { overflow:hidden; height:100vh; }
   </div>
 </section>
 
-<!-- ========== PAGE 2: SCRATCH ========== -->
-<section class="page" id="page2">
-  <div class="scratch-title" id="scrTitle">Reveal</div>
-  <div class="scratch-sub" id="scrSub">SCRATCH TO DISCOVER THE DATE</div>
-
-  <div class="circles-row">
-    <div class="scratch-circle-wrap">
-      <canvas class="scratch-canvas" id="c1" width="130" height="130" data-value="يونيو"></canvas>
-      <div class="scratch-label">MONTH</div>
-    </div>
-    <div class="scratch-circle-wrap">
-      <canvas class="scratch-canvas" id="c2" width="130" height="130" data-value="12"></canvas>
-      <div class="scratch-label">DAY</div>
-    </div>
-    <div class="scratch-circle-wrap">
-      <canvas class="scratch-canvas" id="c3" width="130" height="130" data-value="2026"></canvas>
-      <div class="scratch-label">YEAR</div>
-    </div>
-  </div>
-
-  <div class="reveal-text" id="revealMsg">🎉 الجمعة ١٢ يونيو ٢٠٢٦ — قاعة تونس</div>
-
-  <div class="scroll-hint" style="opacity:0.5">
-    مرر للأسفل
-    <span class="scroll-arrow"></span>
-  </div>
-</section>
-
-<!-- ========== PAGE 3: DETAILS ========== -->
-<section class="page" id="page3" style="overflow-y:auto;justify-content:flex-start;padding:40px 0 60px;">
-  <div style="width:min(540px,90vw);margin:0 auto;">
-    <div class="details-header" id="dh">Details of the Day</div>
-    <div class="details-sub" id="ds">Everything you need to know about our special day</div>
-
-    <div class="detail-card" id="dc1">
-      <div class="card-title">برنامج الحفل</div>
-      <div class="detail-row">
-        <span class="detail-time">4:00 PM</span>
-        <span class="detail-event">استقبال الضيوف</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-time">6:00 PM</span>
-        <span class="detail-event">حفل الزفاف الديني</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-time">7:00 PM</span>
-        <span class="detail-event">جلسة تصوير العائلة</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-time">8:00 PM</span>
-        <span class="detail-event">العشاء والضيافة</span>
-      </div>
-      <div class="detail-row">
-        <span class="detail-time">9:00 PM</span>
-        <span class="detail-event">الفرح والرقص</span>
-      </div>
-    </div>
-
-    <div class="detail-card" id="dc2">
-      <div class="card-title">الموقع والتوجيهات</div>
-      <div class="loc-row">
-        <span class="loc-icon">📍</span>
-        <div class="loc-text">
-          <strong>قاعة تونس</strong>
-          شارع الملك فيصل<br>
-          الجمعة ١٢ يونيو — ٦:٠٠ مساءً — ٨:٠٠ مساءً
+<!-- ========== PAGE 2: REVEAL ========== -->
+<section class="page reveal" id="reveal">
+      <div>
+        <div class="small-icon">♡</div>
+        <p class="hint">Scratch all three circles to continue</p>
+        <h2 class="script-title">Reveal</h2>
+        <p class="subtitle">SCRATCH TO DISCOVER THE DATE</p>
+        <div class="scratch-row">
+          <div class="coin-wrap"><button class="coin" data-value="06"><span></span></button><div>MONTH</div></div>
+          <div class="coin-wrap"><button class="coin" data-value="12"><span></span></button><div>DAY</div></div>
+          <div class="coin-wrap"><button class="coin" data-value="2026"><span></span></button><div>YEAR</div></div>
         </div>
       </div>
-      <div class="loc-row">
-        <span class="loc-icon">📅</span>
-        <div class="loc-text">
-          <strong>التاريخ</strong>
-          Friday, June 12, 2026
+    </section>
+
+    <section class="page details" id="details">
+      <div class="details-wrap">
+        <h2 class="section-title">Details of the Day</h2>
+        <p class="section-subtitle">Everything you need to know about our special day</p>
+        <div class="card">
+          <h3>Ceremony</h3>
+          <div class="info-line">
+            <div class="icon">⌖</div>
+            <div><strong>قاعة تونس</strong><span>حفلة الزفاف في نفس القاعة الخامسة</span></div>
+          </div>
+          <div class="info-line">
+            <div class="icon">▣</div>
+            <div><strong>Friday, June 12, 2026</strong></div>
+          </div>
+          <div class="info-line">
+            <div class="icon">◷</div>
+            <div><strong>6:00 PM – 8:00 PM</strong></div>
+          </div>
+          <div class="actions">
+            <a class="gold-btn" href="https://maps.google.com/?q=قاعة تونس" target="_blank" rel="noopener">⌖ How to get there</a>
+            <a class="outline-btn" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Wedding%20Mohammad%20%26%20Masa&dates=20260612T150000Z/20260612T170000Z&location=قاعة%20تونس" target="_blank" rel="noopener">↗ Add to Calendar</a>
+          </div>
         </div>
       </div>
-      <div class="loc-row">
-        <span class="loc-icon">🕕</span>
-        <div class="loc-text">
-          <strong>التوقيت</strong>
-          ٦:٠٠ مساءً — ٨:٠٠ مساءً
-        </div>
-      </div>
-      <div style="text-align:center;">
-        <a class="btn-map" href="#">كيفية الوصول</a>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
 <script>
 // ===== PAGE 1: Animated intro =====
@@ -488,121 +473,21 @@ skipVideo.addEventListener('click', finishSplash);
 splashVideo.addEventListener('error', finishSplash);
 setTimeout(finishSplash, 18000);
 
-// ===== PAGE 2: Scratch cards =====
-const goldColor = '#c8a430';
-const revealedCount = {count:0};
+// ===== PAGE 2: Reveal coins =====
+document.querySelectorAll('.coin').forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.classList.add('revealed');
+    btn.querySelector('span').textContent = btn.dataset.value;
 
-function initScratch(canvasId, value) {
-  const canvas = document.getElementById(canvasId);
-  const ctx = canvas.getContext('2d');
-  const size = canvas.width;
+    const allDone = [...document.querySelectorAll('.coin')]
+      .every(c => c.classList.contains('revealed'));
 
-  // Gold ball background
-  const grd = ctx.createRadialGradient(size*0.38, size*0.35, size*0.05, size*0.5, size*0.5, size*0.55);
-  grd.addColorStop(0, '#f0d060');
-  grd.addColorStop(0.4, '#c8a430');
-  grd.addColorStop(0.8, '#9a7410');
-  grd.addColorStop(1, '#6a5000');
-  ctx.beginPath();
-  ctx.arc(size/2, size/2, size/2, 0, Math.PI*2);
-  ctx.fillStyle = grd;
-  ctx.fill();
-
-  // Shine
-  const shine = ctx.createRadialGradient(size*0.38, size*0.3, 0, size*0.4, size*0.32, size*0.22);
-  shine.addColorStop(0, 'rgba(255,255,240,0.45)');
-  shine.addColorStop(1, 'rgba(255,255,240,0)');
-  ctx.beginPath();
-  ctx.arc(size/2, size/2, size/2, 0, Math.PI*2);
-  ctx.fillStyle = shine;
-  ctx.fill();
-
-  // Clip to circle for erasing
-  canvas.dataset.value = value;
-  canvas.dataset.scratched = '0';
-
-  let isDrawing = false;
-  let scratchedPixels = 0;
-
-  function getPos(e) {
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / rect.width;
-    const scaleY = canvas.height / rect.height;
-    if(e.touches) {
-      return {
-        x: (e.touches[0].clientX - rect.left) * scaleX,
-        y: (e.touches[0].clientY - rect.top) * scaleY
-      };
-    }
-    return {
-      x: (e.clientX - rect.left) * scaleX,
-      y: (e.clientY - rect.top) * scaleY
-    };
-  }
-
-  function scratch(x, y) {
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.beginPath();
-    ctx.arc(x, y, 18, 0, Math.PI*2);
-    ctx.fill();
-    ctx.globalCompositeOperation = 'source-over';
-
-    // Check reveal %
-    const imgData = ctx.getImageData(0, 0, size, size);
-    let transparent = 0;
-    for(let i = 3; i < imgData.data.length; i += 4) {
-      if(imgData.data[i] < 128) transparent++;
-    }
-    const pct = transparent / (size * size);
-    if(pct > 0.45 && canvas.dataset.scratched === '0') {
-      canvas.dataset.scratched = '1';
-      revealedCount.count++;
-      showValue(canvas, value);
-      if(revealedCount.count >= 3) {
-        setTimeout(() => {
-          document.getElementById('revealMsg').classList.add('show');
-        }, 500);
-      }
-    }
-  }
-
-  function showValue(canvas, val) {
-    const ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = 'rgba(20,8,8,0)';
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle = '#d4af37';
-    ctx.font = 'bold ' + (val.length > 4 ? '22' : '28') + 'px Amiri, serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText(val, canvas.width/2, canvas.height/2);
-  }
-
-  canvas.addEventListener('mousedown', e => { isDrawing = true; const p = getPos(e); scratch(p.x, p.y); });
-  canvas.addEventListener('mousemove', e => { if(!isDrawing) return; const p = getPos(e); scratch(p.x, p.y); });
-  canvas.addEventListener('mouseup', () => isDrawing = false);
-  canvas.addEventListener('touchstart', e => { e.preventDefault(); isDrawing = true; const p = getPos(e); scratch(p.x, p.y); }, {passive:false});
-  canvas.addEventListener('touchmove', e => { e.preventDefault(); if(!isDrawing) return; const p = getPos(e); scratch(p.x, p.y); }, {passive:false});
-  canvas.addEventListener('touchend', () => isDrawing = false);
-}
-
-initScratch('c1', 'يونيو');
-initScratch('c2', '12');
-initScratch('c3', '2026');
-
-// ===== INTERSECTION OBSERVER for animations =====
-const observed = ['scrTitle','scrSub','dh','ds','dc1','dc2'];
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if(e.isIntersecting) {
-      e.target.classList.add('visible');
+    if(allDone) {
+      setTimeout(() => {
+        document.getElementById('details').scrollIntoView({behavior:'smooth'});
+      }, 700);
     }
   });
-}, { threshold: 0.3 });
-
-observed.forEach(id => {
-  const el = document.getElementById(id);
-  if(el) observer.observe(el);
 });
 </script>
 
