@@ -339,17 +339,9 @@ body.lock-scroll { overflow:hidden; height:100vh; }
 </style>
 </head>
 <body class="lock-scroll">
-<audio id="bgMusic" loop>
-    <source src="audio.mp3" type="audio/mpeg">
+<audio id="bgMusic" loop preload="auto" autoplay>
+  <source src="./audio.mp3" type="audio/mpeg">
 </audio>
-
-<script>
-const music = document.getElementById('bgMusic');
-
-document.addEventListener('click', () => {
-    music.play();
-}, { once: true });
-</script>
 <!-- ========== VIDEO SPLASH SCREEN ========== -->
 <div class="splash-screen" id="splashScreen">
   <div class="video-container">
@@ -475,21 +467,42 @@ function startCoverAnimation() {
 const splashScreen = document.getElementById('splashScreen');
 const splashVideo = document.getElementById('splashVideo');
 const skipVideo = document.getElementById('skipVideo');
+const bgMusic = document.getElementById('bgMusic');
 let splashFinished = false;
+
+// ===== BACKGROUND MUSIC LOGIC =====
+// ملاحظة: iPhone/Safari قد يمنع تشغيل الصوت تلقائياً بدون أي تفاعل من المستخدم.
+// هذا الكود يحاول تشغيل الصوت من بداية الموقع، وبعد انتهاء الفيديو، ومع أول تفاعل كحل احتياطي.
+function startMusic() {
+  if (!bgMusic) return;
+  bgMusic.volume = 0.75;
+  const p = bgMusic.play();
+  if (p && typeof p.catch === 'function') {
+    p.catch(() => {});
+  }
+}
+
+window.addEventListener('pageshow', startMusic);
+document.addEventListener('touchstart', startMusic, { once:true, passive:true });
+document.addEventListener('pointerdown', startMusic, { once:true });
+document.addEventListener('click', startMusic, { once:true });
 
 function finishSplash() {
   if (splashFinished) return;
   splashFinished = true;
+  startMusic();
   splashScreen.classList.add('hide');
   document.body.classList.remove('lock-scroll');
   window.scrollTo({ top: 0, behavior: 'instant' });
   setTimeout(() => {
     splashScreen.style.display = 'none';
     startCoverAnimation();
+    startMusic();
   }, 950);
 }
 
 window.addEventListener('load', () => {
+  startMusic();
   const playPromise = splashVideo.play();
   if (playPromise && typeof playPromise.catch === 'function') {
     playPromise.catch(() => {
